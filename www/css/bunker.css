@@ -1,0 +1,21 @@
+#wrapper {
+  width: 900;
+  overflow: hidden;
+  margin: 0 auto;
+  padding: 50px 50px; }
+
+#title {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  width: 100%;
+  text-align: left; }
+
+.btn {
+  color: #fff;
+  background: #520052; }
+
+.btn:hover {
+  color: #fff !important;
+  background: #753375; }
+
+/*# sourceMappingURL=bunker.css.map */

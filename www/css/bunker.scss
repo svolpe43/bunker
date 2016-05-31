@@ -1,0 +1,29 @@
+$settings-width: 200px;
+$button-color: #520052;
+$button-hover-color: #753375;
+$white: #fff;
+$black: #000;
+
+#wrapper{
+	width: 900;
+	overflow: hidden;
+	margin: 0 auto;
+	padding: 50px 50px;
+}
+
+#title{
+	margin-top: 30px;
+	margin-bottom: 30px;
+	width: 100%;
+	text-align: left;
+}
+
+.btn {
+	color: $white;
+	background: $button-color;
+}
+
+.btn:hover {
+	color: $white !important;
+	background: $button-hover-color;
+}
