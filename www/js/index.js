@@ -20,7 +20,29 @@ var app = {
     },
 
     onDeviceReady: function() {
-        Stripe.setPublishableKey(STRIPE_PUBLISH_KEY);
+
+    	/*
+    	console.log(cordova.file.dataDirectory);
+    	
+    	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function (fs) {
+
+    	    console.log('file system open: ' + fs.name);
+    	    fs.root.getFile("bunker-data.txt", { create: true, exclusive: false }, function (fileEntry) {
+
+    	        console.log("fileEntry is file?" + fileEntry.isFile.toString());
+    	        // fileEntry.name == 'someFile.txt'
+    	        // fileEntry.fullPath == '/someFile.txt'
+    	        writeFile(fileEntry, null);
+
+    	    }, function (one, two, three){
+    	    	console.log(one);
+    	    	console.log(two);
+    	    	console.log(three);
+    	    });
+
+    	}, onErrorLoadFs);
+		*/
+
     }
 };
 
@@ -50,13 +72,12 @@ function draw_accounts(){
 	for(var i = 0; i < accounts.length; i++){
 		html += draw_account(accounts[i], i);
 	}
-	html += draw_new_account_form();
 
 	accounts_table.empty().append(html);
 }
 
 function draw_account(account, index){
-	var buttons = '<td><input id="deposit-form" type="text"/>';
+	var buttons = '<td><input id="deposit-form-' + index + '" type="text"/>';
 	buttons += '<button class="btn" onclick="change_account(' + index + ', true)">+</button>';
 	buttons += '<button class="btn" onclick="change_account(' + index + ', false)">-</button></td>';
 
@@ -68,12 +89,6 @@ function draw_account(account, index){
 	html += '</tr>';
 
 	return html;
-}
-
-function draw_new_account_form(){
-	var html = '<tr id="new-account-row"><td>';
-	html += '<input id="new-account-form" type="text"/><button class="btn" onclick="add_account()">Save</button>';
-	return html + '</td></tr>';
 }
 
 // add the account to the global object and update the list in the UI
@@ -89,9 +104,7 @@ function add_account(){
 
 function change_account(account_index, is_deposit){
 
-	var amount = Number($('#deposit-form').val());
-
-	console.log(account_index, amount);
+	var amount = Number($('#deposit-form-' + account_index).val());
 
 	if(is_deposit){
 		accounts[account_index].balance += amount;
